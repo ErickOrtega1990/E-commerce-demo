@@ -3,9 +3,10 @@ import {
   type NewUserCreateType,
   type NewUserReqBody,
   type UserLoginReqBody,
-} from "../types/auth.types.js";
+} from "../types/auth.js";
 import bcrypt from "bcrypt";
 import { signToken } from "../utils/jwt.js";
+import type { CookieOptions } from "react-router-dom";
 
 export async function NewUserRegister(reqBody: NewUserReqBody) {
   const user = await findByEmail(reqBody.email);
@@ -37,12 +38,43 @@ export async function loginHandler(reqBody: UserLoginReqBody) {
   const storedUser = await findByEmail(reqBody.email);
 
   if (!storedUser) return { status: 404, message: "User not found" };
+
   const isMatch = await bcrypt.compare(reqBody.password, storedUser.password);
 
   if (!isMatch) return { status: 401, message: "Invalid credentials" };
-  const accesToken = signToken(
-    { id: storedUser._id, role: storedUser.role }.toString(),
+
+  const refreshCookieOptions: CookieOptions = {
+    expires: new Date(Date.now() + 3600 * 24 * 30),
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  };
+
+  const accesCookieOptions: CookieOptions = {
+    expires: new Date(Date.now() + 3600 * 24 * 30),
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  };
+
+  const accesToken = signToken<String>(
+    { id: storedUser._id, role: storedUser.role, type: "acces" }.toString(),
+    3 * 60 * 1000,
   );
 
-  return { status: 200, token: accesToken };
+  const sessionId =
+    storedUser._id + "_" + Math.floor(Math.random() * 100).toString();
+
+  const refresToken = signToken<String>(
+    { id: storedUser._id, session: sessionId, type: "refresh" }.toString(),
+    3600 * 24 * 30,
+  );
+
+  return {
+    status: 200,
+    accesToken: accesToken,
+    refresToken,
+    refreshCookieOptions,
+    accesCookieOptions,
+  };
 }
