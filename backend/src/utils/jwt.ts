@@ -2,7 +2,7 @@ import jwt, { type SignOptions } from "jsonwebtoken";
 import "dotenv/config";
 
 export function signToken(id: string) {
-  const secret = process.env.JWT_SECRET;
+  const secret = process.env.ACCES_JWT_SECRET;
   if (!secret) throw new Error("No JWT secret stored");
 
   const options: SignOptions = {

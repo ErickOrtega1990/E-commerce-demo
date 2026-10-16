@@ -5,6 +5,7 @@ export const UserSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   salt: String,
+  role: Number,
 });
 
 const User = mongoose.model("User", UserSchema);

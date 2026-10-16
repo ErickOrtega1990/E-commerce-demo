@@ -14,4 +14,5 @@ export type NewUserCreateType = {
   email: String;
   password: String;
   salt: String;
+  role: Number;
 };

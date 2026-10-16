@@ -21,6 +21,7 @@ export async function NewUserRegister(reqBody: NewUserReqBody) {
     name: reqBody.name,
     password: hashed,
     salt: salt,
+    role: 0,
   };
 
   const userCreated = await createUser(newUserData);
@@ -39,7 +40,9 @@ export async function loginHandler(reqBody: UserLoginReqBody) {
   const isMatch = await bcrypt.compare(reqBody.password, storedUser.password);
 
   if (!isMatch) return { status: 401, message: "Invalid credentials" };
-  const signed = signToken(storedUser._id.toString());
+  const accesToken = signToken(
+    { id: storedUser._id, role: storedUser.role }.toString(),
+  );
 
-  return { status: 200, token: signed };
+  return { status: 200, token: accesToken };
 }
