@@ -1,2 +1,2 @@
-# E-commerce-demo
-Demo version for E-commerce website.
+# IndustrialFornitureDemo
+Demo version for industrial style fornitures website.
