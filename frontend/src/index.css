@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "IBM Plex Sans Devanagari", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+h3,
+a {
+  font-weight: 200;
+}

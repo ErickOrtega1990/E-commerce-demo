@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  /* ----------------------- NAVBAR CONFIG ----------------------- */
+
+  interpolate-size: allow-keywords; /* Habilita transiciones con auto */
+
+  /*--------------------------- FONTS -----------------------------*/
+
+  --font-family--: "Montserrat", sans-serif;
+  --nanbvar-font-size--: 16px;
+  --mobile-font-size--: 18px;
+
+  /*------------------------ DIMENSIONS ---------------------------*/
+
+  --navbar-height--: 50px;
+  --browser-navbar-width--: 60%100%;
+  --browser-navbar-linkcontainer-width--: 40%;
+  --browser-link-gap--: 20px;
+
+  --browser-row-gap--: 5px;
+  --mobile-row-gap--: 10pxpx;
+  --mobile-y-pading--: 10px 0 10px 0;
+  --browser-y-padding--: 5px;
+
+  --browser-navbar-margin-top--: 0px;
+
+  /*------------------------------ Styles --------------------------*/
+
+  --navbar-font-color--: rgb(134, 149, 182);
+  --navbar-color--: rgba(42, 48, 58, 0.904);
+  --mobile-dropdown-color--: rgba(114, 106, 106, 0.075);
+
+  --browser-navbar-linkcontainer-border-radius--: 0px;
+
+  --box-shadow--: 3px 3px rgba(57, 60, 61, 0.11);
+  --blur--: blur(5px);
+
+  --browser-row-gap--: 5px;
+  --mobile-row-gap--: 10px;
+  --mobile-y-pading--: 10px 0 10px 0;
+
+  --transition--: 0.4s ease-in-out;
+
+  /* ----------------------- NAVBAR CONFIG ----------------------- */
+}
