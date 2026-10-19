@@ -3,7 +3,7 @@ import {
   type NewUserCreateType,
   type NewUserReqBody,
   type UserLoginReqBody,
-} from "../types/auth.js";
+} from "../types/auth.d.js";
 import bcrypt from "bcrypt";
 import { signToken } from "../utils/jwt.js";
 import type { CookieOptions } from "react-router-dom";

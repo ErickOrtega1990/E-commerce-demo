@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-import { type NewUserCreateType } from "../types/auth.js";
+import { type NewUserCreateType } from "../types/auth.d.js";
 
 export async function findByEmail(email: string) {
   try {
