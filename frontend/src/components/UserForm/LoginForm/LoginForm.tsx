@@ -7,7 +7,7 @@ import sessionContext from "../../../context/Session";
 const url = import.meta.env.VITE_LOGIN_URL;
 
 function LoginForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [isPending, setIsPending] = useState<boolean>(false);
   const { changeLoginState } = useContext(sessionContext);
 
@@ -31,6 +31,7 @@ function LoginForm() {
   const submitHandler = async (data: FieldValues) => {
     setIsPending(true);
     mutation.mutate(data);
+    reset();
   };
 
   return (

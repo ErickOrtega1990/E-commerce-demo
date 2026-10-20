@@ -19,6 +19,9 @@
   background: var(--navbar-color--);
   backdrop-filter: var(--blur--);
   box-shadow: var(--box-shadow--);
+
+  position: relative;
+  z-index: 99;
 }
 
 .browserLinkContainer {

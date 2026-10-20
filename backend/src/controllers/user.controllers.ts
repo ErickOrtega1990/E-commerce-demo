@@ -25,17 +25,14 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const logout = (req: Request, res: Response) => {
-  res.clearCookie("access", {
+  const opts = {
     httpOnly: true,
-    sameSite: true,
+    sameSite: true as const,
     secure: true,
-  });
+  };
 
-  res.clearCookie("refresh", {
-    httpOnly: true,
-    sameSite: true,
-    secure: true,
-  });
+  res.clearCookie("access", opts);
+  res.clearCookie("refresh", opts);
 
-  res.status(200).send({ message: "Logged-out" });
+  res.status(200).json({ message: "Logged out" });
 };

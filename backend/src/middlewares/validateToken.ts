@@ -25,6 +25,7 @@ export const validateAccesToken = (
   } catch (error) {
     return res.status(403).send({ message: "Invalid token" });
   }
+  next();
 };
 
 export const validateRefreshToken = (

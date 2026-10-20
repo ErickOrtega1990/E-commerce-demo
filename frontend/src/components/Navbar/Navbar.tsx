@@ -2,6 +2,7 @@ import style from "./Navbar.module.css";
 import ToggleButton from "./ToogleButton/ToggleButton";
 import { useState } from "react";
 import NavbarContent from "./NavbarContent";
+import Logo from "./Logo/Logo";
 
 type Props = {};
 
@@ -22,6 +23,7 @@ function Navbar1({}: Props) {
     <>
       <ToggleButton setShowBar={showBarHandler} showBar={showBar} />
       <div className={style.navbar}>
+        <Logo />
         <div className={style.browserLinkContainer}>
           <NavbarContent />
         </div>

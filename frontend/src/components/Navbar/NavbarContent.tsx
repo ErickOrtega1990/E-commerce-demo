@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import NavbarLink from "./NavbarLink/NavbarLink";
 import sessionContext from "../../context/Session";
+import LogoutButton from "./LogoutButton/LogoutButton";
 
 type Props = {};
 
@@ -14,9 +15,7 @@ function NavbarContent({}: Props) {
           <NavbarLink href="/session/register" type="register">
             Mi cuenta
           </NavbarLink>
-          <NavbarLink href="/session/login" type="login">
-            Cerrar sesión
-          </NavbarLink>
+          <LogoutButton />
         </>
       ) : (
         <>

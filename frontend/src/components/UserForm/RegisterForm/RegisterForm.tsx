@@ -6,7 +6,7 @@ import { useState } from "react";
 const url = import.meta.env.VITE_REGISTER_URL;
 
 function RegisterForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [isPending, setIsPending] = useState<boolean>(false);
 
   const mutation = useMutation({
@@ -32,6 +32,7 @@ function RegisterForm() {
   const submitHandler = async (data: FieldValues) => {
     setIsPending(true);
     mutation.mutate(data);
+    reset();
   };
 
   return (
