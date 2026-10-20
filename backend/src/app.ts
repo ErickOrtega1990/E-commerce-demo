@@ -7,10 +7,12 @@ import router from "./routes/index.js";
 import cookieParser from "cookie-parser";
 
 const corsOptions: CorsOptions = {
-  origin: process.env.CORS_ORIGINS,
+  origin: process.env.CORS_ORIGINS?.split(",").map((o) => o.trim()),
   credentials: true,
-  allowedHeaders: process.env.CORS_ALLOWED_HEADERS,
-  methods: process.env.CORS_METHODS,
+  allowedHeaders: process.env.CORS_ALLOWED_HEADERS?.split(",").map((h) =>
+    h.trim(),
+  ),
+  methods: process.env.CORS_METHODS?.split(",").map((m) => m.trim()),
   maxAge: 600,
 };
 
@@ -26,7 +28,6 @@ const limiter = rateLimit({
 });
 
 export const app: Express = express();
-
 const appInit = () => {
   app.use(cors(corsOptions));
   app.use(helmet());
