@@ -51,4 +51,5 @@ export const validateRefreshToken = (
   } catch (error) {
     return res.status(403).send({ message: "Invalid token" });
   }
+  next();
 };

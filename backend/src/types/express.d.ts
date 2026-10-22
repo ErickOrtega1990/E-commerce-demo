@@ -4,7 +4,7 @@ declare global {
   namespace Express {
     interface Request {
       user?: { id: string; role: number; type: string };
-      session?: { id: string; session: string; type: string };
+      session?: { id: string; session: string; type: string; role?: string };
     }
   }
 }

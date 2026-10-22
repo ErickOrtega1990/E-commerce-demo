@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import NavbarLink from "./NavbarLink/NavbarLink";
 import sessionContext from "../../context/Session";
 import LogoutButton from "./LogoutButton/LogoutButton";
@@ -8,11 +8,13 @@ type Props = {};
 function NavbarContent({}: Props) {
   const { isLogged } = useContext(sessionContext);
 
+  useEffect(() => {}, [isLogged]);
+
   return (
     <>
       {isLogged ? (
         <>
-          <NavbarLink href="/session/register" type="register">
+          <NavbarLink href="/account" type="register">
             Mi cuenta
           </NavbarLink>
           <LogoutButton />
