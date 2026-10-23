@@ -1,0 +1,10 @@
+.button {
+  width: 130px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(163, 138, 105, 0.582);
+  color: white;
+  font-weight: 200;
+  box-shadow: inset 1px 1px 5px 0px rgb(156, 152, 113);
+}

@@ -4,6 +4,7 @@ import cors, { type CorsOptions } from "cors";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import router from "./routes/index.js";
+import cookieParser from "cookie-parser";
 
 const corsOptions: CorsOptions = {
   origin: process.env.CORS_ORIGINS?.split(",").map((o) => o.trim()),
@@ -27,12 +28,12 @@ const limiter = rateLimit({
 });
 
 export const app: Express = express();
-
 const appInit = () => {
   app.use(cors(corsOptions));
   app.use(helmet());
   app.use(limiter);
   app.use(express.json({ limit: "5kb" }));
+  app.use(cookieParser());
   app.use("/api", router);
 };
 

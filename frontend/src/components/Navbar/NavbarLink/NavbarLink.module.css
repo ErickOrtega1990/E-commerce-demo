@@ -1,0 +1,48 @@
+@import url("../config.css");
+
+.link {
+  color: var(--navbar-font-color--);
+  transition: 0.2s ease-in-out;
+
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  font-size: var(--navbar-font-size--);
+}
+
+.link:hover {
+  transform: scale(1.025);
+}
+
+.login {
+  text-decoration: none;
+  color: white;
+  padding: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: solid 1px rgb(46, 161, 51);
+  box-shadow: 1px 1px 2px rgb(129, 170, 131);
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.login:hover {
+  box-shadow: 2px 2px 5px rgb(129, 170, 131);
+  transform: scale(1.05);
+}
+
+.login:active {
+  box-shadow: 1px 1px 2px rgb(129, 170, 131);
+  transform: scale(1);
+}
+
+.register {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 960px) {
+  .link {
+    font-size: var(--mobile-font-size--);
+  }
+}
