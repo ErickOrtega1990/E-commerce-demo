@@ -3,6 +3,7 @@ import style from "./LoginForm.module.css";
 import { useMutation } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import sessionContext from "../../../context/Session";
+import { useNavigate } from "react-router-dom";
 
 const url = import.meta.env.VITE_LOGIN_URL;
 
@@ -10,9 +11,11 @@ function LoginForm() {
   const { register, handleSubmit, reset } = useForm();
   const [isPending, setIsPending] = useState<boolean>(false);
   const { changeLoginState } = useContext(sessionContext);
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async (data: FieldValues) => {
+      setIsPending(true);
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -20,11 +23,13 @@ function LoginForm() {
         credentials: "include",
       });
 
+      setIsPending(false);
       if (!response.ok) {
         throw new Error(`Error ${response.status}`);
       }
       changeLoginState(true);
-      return response.json();
+
+      return navigate("/account");
     },
   });
 
@@ -69,8 +74,8 @@ function LoginForm() {
         </a>
       </div>
 
-      <button type="submit" className={style.button}>
-        Ingresar
+      <button disabled={isPending} type="submit" className={style.button}>
+        {isPending ? "Enviando..." : "Ingresar"}
       </button>
     </form>
   );

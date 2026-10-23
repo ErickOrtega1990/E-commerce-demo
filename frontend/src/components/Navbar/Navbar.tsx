@@ -1,8 +1,9 @@
 import style from "./Navbar.module.css";
 import ToggleButton from "./ToogleButton/ToggleButton";
-import { useState } from "react";
 import NavbarContent from "./NavbarContent";
 import Logo from "./Logo/Logo";
+import { useEffect, useState } from "react";
+import useRefreshSession from "../../hooks/useRefreshSession";
 
 type Props = {};
 
@@ -14,6 +15,11 @@ const show = {
 
 function Navbar1({}: Props) {
   const [showBar, setShowBar] = useState(false);
+  const refresh = useRefreshSession();
+
+  useEffect(() => {
+    refresh;
+  }, []);
 
   const showBarHandler = () => {
     setShowBar(!showBar);

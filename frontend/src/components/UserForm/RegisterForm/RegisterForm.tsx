@@ -2,12 +2,16 @@ import { useForm, type FieldValues } from "react-hook-form";
 import style from "./RegisterForm.module.css";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Succes from "../status/success/Succes";
+import Loading from "../status/Loading/Loading";
 
 const url = import.meta.env.VITE_REGISTER_URL;
 
 function RegisterForm() {
   const { register, handleSubmit, reset } = useForm();
   const [isPending, setIsPending] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async (data: FieldValues) => {
@@ -25,7 +29,7 @@ function RegisterForm() {
         throw new Error(`Error ${response.status}`);
       }
 
-      return response.json();
+      return navigate("/session/login");
     },
   });
 
@@ -34,6 +38,8 @@ function RegisterForm() {
     mutation.mutate(data);
     reset();
   };
+
+  if (isPending) return <Loading />;
 
   return (
     <form
@@ -99,8 +105,8 @@ function RegisterForm() {
         </label>
       </div>
 
-      <button type="submit" className={style.button}>
-        Crear cuenta
+      <button disabled={isPending} type="submit" className={style.button}>
+        {isPending ? "Enviando..." : "Crear cuenta"}
       </button>
     </form>
   );

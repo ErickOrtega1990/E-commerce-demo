@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import sessionContext from "../../context/Session";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useRefreshSession from "../../hooks/useRefreshSession";
 
 type Props = {};
 
@@ -13,7 +14,12 @@ function Layout({}: Props) {
   };
 
   return (
-    <sessionContext.Provider value={{ isLogged: isLogged, changeLoginState }}>
+    <sessionContext.Provider
+      value={{
+        isLogged: isLogged,
+        changeLoginState,
+      }}
+    >
       <Navbar />
       <Outlet />
     </sessionContext.Provider>

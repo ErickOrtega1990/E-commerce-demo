@@ -8,7 +8,7 @@ type Props = {};
 const url = import.meta.env.VITE_LOGOUT_URL;
 
 function LogoutButton({}: Props) {
-  const { isLogged, changeLoginState } = useContext(sessionContext);
+  const { changeLoginState } = useContext(sessionContext);
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -19,18 +19,19 @@ function LogoutButton({}: Props) {
         },
         credentials: "include",
       });
-      if (response.status === 200 || response.status === 401) {
-        changeLoginState(false);
-      }
-      return await response.json();
+
+      return response.status;
     },
   });
 
   return (
     <button
       className={style.button}
-      onClick={() => {
-        mutation.mutate();
+      onClick={async () => {
+        const logoutResponse = await mutation.mutateAsync();
+        if (logoutResponse === 200 || logoutResponse === 401) {
+          changeLoginState(false);
+        }
       }}
     >
       Cerrar sesión

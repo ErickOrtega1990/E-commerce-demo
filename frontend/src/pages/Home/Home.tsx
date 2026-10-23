@@ -1,13 +1,12 @@
-import { useContext, useEffect } from "react";
-import sessionContext from "../../context/Session";
+import { useEffect } from "react";
 import useRefreshSession from "../../hooks/useRefreshSession";
 
 function Home() {
-  const { changeLoginState } = useContext(sessionContext);
-  const logged = useRefreshSession();
+  // const refresh = useRefreshSession();
 
-  changeLoginState(logged);
-
+  // useEffect(() => {
+  //   refresh;
+  // }, []);
   return (
     <>
       <h1>Home</h1>
