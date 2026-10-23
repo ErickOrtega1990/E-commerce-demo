@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import sessionContext from "../../../context/Session";
 import { useNavigate } from "react-router-dom";
+import Loading from "../status/Loading/Loading";
 
 const url = import.meta.env.VITE_LOGIN_URL;
 
@@ -38,6 +39,8 @@ function LoginForm() {
     mutation.mutate(data);
     reset();
   };
+
+  if (isPending) return <Loading side="right" />;
 
   return (
     <form

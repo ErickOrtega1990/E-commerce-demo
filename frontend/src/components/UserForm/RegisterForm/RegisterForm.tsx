@@ -3,7 +3,6 @@ import style from "./RegisterForm.module.css";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Succes from "../status/success/Succes";
 import Loading from "../status/Loading/Loading";
 
 const url = import.meta.env.VITE_REGISTER_URL;
@@ -39,7 +38,7 @@ function RegisterForm() {
     reset();
   };
 
-  if (isPending) return <Loading />;
+  if (isPending) return <Loading side="left" />;
 
   return (
     <form
